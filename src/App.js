@@ -82,12 +82,15 @@ export default class App extends React.Component {
                                 this.setState({ vizType: e.target.value });
                               }}>
                               <optgroup label="Plots">
-                                <option value="confirmed">confirmed</option>
-                                <option value="recovered">recovered</option>
-                                <option value="tested">tested</option>
-                                <option value="deceased">deceased</option>
-                                <option value="active">active</option>
-                                <option value="prevalence">prevalence</option>
+                                <option value="confirmed">Confirmed</option>
+                                <option value="recovered">Recovered</option>
+                                <option value="tested">Tested</option>
+                                <option value="deceased">Deceased</option>
+                                <option value="active">Active</option>
+                                <option value="infection rate this week">Confirmed infection rate this week </option>
+                                <option value="active per million">Active infection per million</option>
+                                <option value="cfr">Case fatality rate to date</option>
+                                <option value="cfr this week">Case fatality rate this week</option>
                               </optgroup>
                             </Form.Control>
                           </Form.Group>

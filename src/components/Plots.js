@@ -7,7 +7,6 @@ export const state_codes = {
     "BR": "Bihar",
     // "CH": "Chandigarh",
     "CT": "Chhattisgarh",
-    "DL": "Delhi",
     "GA": "Goa",
     "GJ": "Gujarat",
     "HR": "Haryana",
