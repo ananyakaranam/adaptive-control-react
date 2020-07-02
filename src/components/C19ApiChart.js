@@ -32,10 +32,12 @@ class C19ApiChart extends React.Component {
                                 "tested":    total["tested"]    || 0,
                                 "deceased":    total["deceased"] || 0,
                                 "infection rate this week": delta["confirmed"]/delta["tested"] || 0,
+                                "infection rate to date": Math.round((delta["confirmed"]/delta["tested"])*1000)/1000 || 0,
                                 "active": total["confirmed"] || 0,
-                                "active per million": total["confirmed"]/this.pop_list[state] || 0,
+                                "active per million": Math.round((total["confirmed"]/this.pop_list[state])*1000)/1000 || 0,
                                 "cfr":  0,
-                                "cfr this week":  0 
+                                "cfr this week":  0,
+                                "recovery rate": total["recovered"]/this.pop_list[state] || 0,
                              })
                         } else if (isNaN(total["deceased"])) {
                             ts.push({ 
@@ -45,10 +47,12 @@ class C19ApiChart extends React.Component {
                                 "tested":    total["tested"]    || 0,
                                 "deceased":    total["deceased"] || 0,
                                 "infection rate this week": delta["confirmed"]/delta["tested"] || 0,
+                                "infection rate to date": Math.round((delta["confirmed"]/delta["tested"])*1000)/1000 || 0,
                                 "active": total["confirmed"] - total["recovered"] || 0,
-                                "active per million": (total["confirmed"] - total["recovered"])/this.pop_list[state] || 0,
+                                "active per million": Math.round(((total["confirmed"] - total["recovered"])/this.pop_list[state])*1000)/1000 || 0,
                                 "cfr":  0,
-                                "cfr this week": 0 
+                                "cfr this week": 0,
+                                "recovery rate": total["recovered"]/this.pop_list[state] || 0,
                              })
                         } else {
                             ts.push({
@@ -58,10 +62,13 @@ class C19ApiChart extends React.Component {
                                 "tested":    total["tested"]    || 0,
                                 "deceased":    total["deceased"] || 0,
                                 "infection rate this week": Math.round((delta["confirmed"]/delta["tested"])*1000)/1000 || 0,
+                                "infection rate to date": Math.round((delta["confirmed"]/delta["tested"])*1000)/1000 || 0,
                                 "active":    total["confirmed"] - total["recovered"] - total["deceased"] || 0,
                                 "active per million": Math.round(((total["confirmed"] - total["recovered"] - total["deceased"])/this.pop_list[state])*1000)/1000 || 0,
                                 "cfr": Math.round((total["deceased"]/total["confirmed"])*1000)/1000 || 0,
-                                "cfr this week": Math.round((delta["deceased"]/delta["confirmed"])*1000)/1000 || 0 
+                                "cfr this week": Math.round((delta["deceased"]/delta["confirmed"])*1000)/1000 || 0,
+                                "recovery rate": total["recovered"]/this.pop_list[state] || 0,
+                                
                             }) 
                         } 
                     })
@@ -84,7 +91,7 @@ class C19ApiChart extends React.Component {
             <LineChart margin={{top: 5, right: 30, left: 20, bottom: 5}}>
                 <CartesianGrid strokeDasharray="3 3" />
                 <XAxis allowDuplicatedCategory={false} dataKey="date" />
-                <YAxis />
+                <YAxis scale="log" domain={['auto', 'auto']} />
                 <Tooltip />
                 <Legend />
                 <Line name={state_codes[this.props.geography]} type="monotone" data={this.state.data[this.props.geography].slice(-50)} dataKey={this.props.vizType} stroke="#8884d8" activeDot={{ r: 5 }} dot={false}/>
@@ -93,7 +100,7 @@ class C19ApiChart extends React.Component {
             </ResponsiveContainer>
             </>
         }
-        if (this.props.vizType === "active per million" || this.props.vizType === "cfr") {
+        if (this.props.vizType === "active per million" || this.props.vizType === "cfr" || this.props.vizType === "recovery rate" || this.props.vizType === "infection rate to date" ) {
             return <>
             <ResponsiveContainer>
             <LineChart margin={{top: 5, right: 30, left: 20, bottom: 5}}>
@@ -117,8 +124,8 @@ class C19ApiChart extends React.Component {
                 <YAxis />
                 <Tooltip />
                 <Legend />
-                <Line name={state_codes[this.props.geography]} type="monotone" data={this.state.data[this.props.geography].slice(-7)} dataKey={this.props.vizType} stroke="#8884d8" activeDot={{ r: 5 }} dot={false} />
-                <Line name="Total India" type="monotone" data={this.state.data["TT"].slice(-7)} dataKey={this.props.vizType} stroke="#6c757d" activeDot={{ r: 5 }} dot={false}/>
+                <Line name={state_codes[this.props.geography]} type="monotone" data={this.state.data[this.props.geography].slice(-8,-1)} dataKey={this.props.vizType} stroke="#8884d8" activeDot={{ r: 5 }} dot={false} />
+                <Line name="Total India" type="monotone" data={this.state.data["TT"].slice(-8, -1)} dataKey={this.props.vizType} stroke="#6c757d" activeDot={{ r: 5 }} dot={false}/>
             </LineChart>
             </ResponsiveContainer>
             </>

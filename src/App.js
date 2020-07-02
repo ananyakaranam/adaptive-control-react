@@ -5,6 +5,7 @@ import Card from "react-bootstrap/Card";
 import Form from "react-bootstrap/Form";
 
 import { state_codes } from "./components/Plots.js";
+import { Details } from "./components/Details.js";
 import "./App.css";
 import C19ApiChart from "./components/C19ApiChart.js";
 
@@ -91,6 +92,9 @@ export default class App extends React.Component {
                                 <option value="active per million">Active infection per million</option>
                                 <option value="cfr">Case fatality rate to date</option>
                                 <option value="cfr this week">Case fatality rate this week</option>
+                                <option value="recovery rate">Confirmed recovered rate</option>
+                                <option value="infection rate to date">Infection rate to date</option>
+                              
                               </optgroup>
                             </Form.Control>
                           </Form.Group>
@@ -106,6 +110,7 @@ export default class App extends React.Component {
               <Card id="detail_box">
                 {cardHeader("Details")}
                 <Card.Body>
+                <Details viztype={this.state.vizType} geography={this.state.geography} />
                 </Card.Body>
               </Card>
               <br></br>

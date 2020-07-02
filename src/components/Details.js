@@ -31,10 +31,115 @@ export const Details = ({viztype, geography}) => {
             </Table>
         </div>
         )
-    } else {
+    } else if (viztype === "confirmed") {
         return (
         <div>
-            <Card.Title className="italic">Demo: pull live data from COVIN19India</Card.Title>
+            <Card.Title className="italic">Confirmed cases </Card.Title>
+            <p>This plot shows the number of COVID-19 confirmed cases over time.</p>
+            {
+            (unit === "district") &&
+            <p>The purple line shows cases for the given state. The grey line represents cases for the entire country, for comparison. </p>
+            }
+        </div>)
+    } else if (viztype === "recovered") {
+        return (
+        <div>
+            <Card.Title className="italic">Recovered cases </Card.Title>
+            <p>This plot shows the number of COVID-19 recovered cases over time.</p>
+            {
+            (unit === "district") &&
+            <p>The purple line shows recoveries for the given state. The grey line represents recoveries for the entire country, for comparison. </p>
+            }
+        </div>)
+    } else if (viztype === "tested") {
+        return (
+        <div>
+            <Card.Title className="italic">Tests </Card.Title>
+            <p>This plot shows the number of COVID-19 tests over time.</p>
+            {
+            (unit === "district") &&
+            <p>The purple line shows tests for the given state. The grey line represents tests for the entire country, for comparison. </p>
+            }
+        </div>)
+    } else if (viztype === "deceased") {
+        return (
+        <div>
+            <Card.Title className="italic">Deaths </Card.Title>
+            <p>This plot shows the number of COVID-19 confirmed deaths over time.</p>
+            {
+            (unit === "district") &&
+            <p>The purple line shows deaths for the given state. The grey line represents deaths for the entire country, for comparison. </p>
+            }
+        </div>)
+    } else if (viztype === "active") {
+        return (
+        <div>
+            <Card.Title className="italic">Active cases </Card.Title>
+            <p>This plot shows the number of COVID-19 active cases over time.</p>
+            {
+            (unit === "district") &&
+            <p>The purple line shows active cases for the given state. The grey line represents active cases for the entire country, for comparison. </p>
+            }
+        </div>)
+    } else if (viztype === "active per million") {
+        return (
+        <div>
+            <Card.Title className="italic">Lower bound on confirmed infection rate </Card.Title>
+            <p>This plot shows the number of COVID-19 confirmed cases per million people, giving us a lower bound on the infection rate.</p>
+            {
+            (unit === "district") &&
+            <p>The purple line shows cases per million for the given state. The grey line represents cases per million for the entire country, for comparison. </p>
+            }
+        </div>)
+    } else if (viztype === "cfr") {
+        return (
+        <div>
+            <Card.Title className="italic">Case fatality rate </Card.Title>
+            <p>This plot shows the ratio of COVID-19 deaths to confirmed cases over time.</p>
+            {
+            (unit === "district") &&
+            <p>The purple line shows case fatality rate for the given state. The grey line represents case fatality rate for the entire country, for comparison. </p>
+            }
+        </div>)
+    } else if (viztype === "recovery rate") {
+        return (
+        <div>
+            <Card.Title className="italic">Confirmed recovered rate </Card.Title>
+            <p>This plot shows the number of COVID-19 recovered cases per million people.</p>
+            {
+            (unit === "district") &&
+            <p>The purple line shows recovered rate for the given state. The grey line represents the rate for the entire country, for comparison. </p>
+            }
+        </div>)
+    } else if (viztype === "infection rate to date") {
+        return (
+        <div>
+            <Card.Title className="italic">Confirmed infection rate to date </Card.Title>
+            <p>This plot shows the ratio of COVID-19 active cases to the number of tests over time.</p>
+            {
+            (unit === "district") &&
+            <p>The purple line shows confirmed infection rate for the given state. The grey line represents the rate for the entire country, for comparison. </p>
+            }
+        </div>)
+    } else if (viztype === "infection rate this week") {
+        return (
+        <div>
+            <Card.Title className="italic">Confirmed infection rate this week </Card.Title>
+            <p>This plot shows the ratio of new COVID-19 active cases this week to the number of tests this week.</p>
+            {
+            (unit === "district") &&
+            <p>The purple line shows confirmed infection rate for the given state. The grey line represents the rate for the entire country, for comparison. </p>
+            }
+        </div>)
+    } else if (viztype === "cfr this week") {
+        return (
+        <div>
+            <Card.Title className="italic">Case fatality rate this week </Card.Title>
+            <p>This plot shows the ratio of new COVID-19 deaths this week to confirmed cases this week.</p>
+            {
+            (unit === "district") &&
+            <p>The purple line shows case fatality rate for the given state. The grey line represents the rate for the entire country, for comparison. </p>
+            }
         </div>)
     }
 }
